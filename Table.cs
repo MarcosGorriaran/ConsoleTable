@@ -42,17 +42,17 @@
         private string BuildCenteredCell(int row, int col)
         {
             int startBuildingOn = (this.longestStringCol[col] - CornersForCell) / Halfer - this.TableCells[row,col].Content.Length / Halfer;
-            return Table.TableVerticalLine + new string(' ', startBuildingOn) + this.TableCells[row, col].WriteContent() + new string(' ', startBuildingOn);
+            return Table.TableVerticalLine + new string(Table.WhiteSpace, startBuildingOn) + this.TableCells[row, col].WriteContent() + new string(Table.WhiteSpace, startBuildingOn);
         }
         private string BuildCenteredCell()
         {
             int startBuildingOn = (this.TableRowLength()-AmountCorners)/Halfer - this.Title.Length / Halfer;
-            return Table.TableVerticalLine+new string(' ', startBuildingOn)+this.Title+new string(' ',startBuildingOn)+ Table.TableVerticalLine;
+            return Table.TableVerticalLine+new string(Table.WhiteSpace, startBuildingOn)+this.Title+new string(Table.WhiteSpace, startBuildingOn)+ Table.TableVerticalLine;
         }
         private string BuildCell(int row, int col)
         {
             int whiteSpaces = this.longestStringCol[col] - this.TableCells[row, col].Content.Length;
-            return Table.TableVerticalLine + this.TableCells[row, col].WriteContent() + new string(' ', whiteSpaces) + Table.TableVerticalLine;
+            return Table.TableVerticalLine + this.TableCells[row, col].WriteContent() + new string(Table.WhiteSpace, whiteSpaces) + Table.TableVerticalLine;
         }
         private string BuildRowLine(bool cornerLine)
         {
