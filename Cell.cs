@@ -21,6 +21,14 @@ namespace ConsoleTable
             this.Content = content;
             this.Header = header;
         }
+        /// <summary>
+        /// Method which will return a string with escape codes telling the console to write
+        /// the text as bold but it will only work on windows 10 consoles and future versions of it
+        /// </summary>
+        /// <returns>
+        /// The content text either as bold text or normal text depending if weather or not the attribute header
+        /// is true or false. True and it will be bold, False and it will be normal.
+        /// </returns>
         public string WriteContent()
         {
             return this.header ? ConsoleBold+this.Content+ConsoleReset : this.Content;
