@@ -33,11 +33,17 @@ namespace ConsoleTable
         {
             return this.header ? ConsoleBold+this.Content+ConsoleReset : this.Content;
         }
+        /// <summary>
+        /// Content represents what text will go on the cell
+        /// </summary>
         public string Content
         {
             get { return this.content; }
             set { this.content = value; }
         }
+        /// <summary>
+        /// Header specifies if the cell is header or not.
+        /// </summary>
         public bool Header
         {
             get { return this.header; }
