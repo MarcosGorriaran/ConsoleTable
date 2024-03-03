@@ -1,5 +1,8 @@
 ﻿namespace ConsoleTable
 {
+    /// <summary>
+    /// C
+    /// </summary>
     public class Table
     {
         const char TableCorner = '+';
@@ -41,18 +44,63 @@
         }
         private string BuildCenteredCell(int row, int col)
         {
-            int startBuildingOn = (this.longestStringCol[col] - CornersForCell) / Halfer - this.TableCells[row,col].Content.Length / Halfer;
-            return Table.TableVerticalLine + new string(Table.WhiteSpace, startBuildingOn) + this.TableCells[row, col].WriteContent() + new string(Table.WhiteSpace, startBuildingOn);
+            int startBuildingOn = (this.longestStringCol[col]) / Halfer - this.TableCells[row,col].Content.Length / Halfer;
+            int endBuildingOn;
+
+            
+            if ((startBuildingOn * 2 + this.TableCells[row,col].Content.Length) > this.longestStringCol[col])
+            {
+                endBuildingOn = startBuildingOn - 1;
+            }
+            else if ((startBuildingOn * 2 + this.TableCells[row, col].Content.Length) < this.longestStringCol[col])
+            {
+                endBuildingOn = startBuildingOn + 1;
+            }
+            else
+            {
+                endBuildingOn = startBuildingOn;
+            }
+            if (startBuildingOn < 0)
+            {
+                startBuildingOn = 0;
+            }
+            if(endBuildingOn < 0)
+            {
+                endBuildingOn = 0;
+            }
+            return Table.TableVerticalLine + new string(Table.WhiteSpace, startBuildingOn) + this.TableCells[row, col].WriteContent() + new string(Table.WhiteSpace, endBuildingOn);
         }
         private string BuildCenteredCell()
         {
-            int startBuildingOn = (this.TableRowLength()-AmountCorners)/Halfer - this.Title.Length / Halfer;
-            return Table.TableVerticalLine+new string(Table.WhiteSpace, startBuildingOn)+this.Title+new string(Table.WhiteSpace, startBuildingOn)+ Table.TableVerticalLine;
+            int startBuildingOn = Convert.ToInt32(Math.Round(((decimal)this.TableRowLength()-AmountCorners)/Halfer - this.Title.Length / Halfer));
+            int endBuildingOn;
+            
+            if ((startBuildingOn * 2 + this.Title.Length) > this.TableRowLength() - AmountCorners)
+            {
+                endBuildingOn = startBuildingOn - 1;
+            }
+            else if((startBuildingOn * 2 + this.Title.Length) < this.TableRowLength() - AmountCorners)
+            {
+                endBuildingOn = startBuildingOn + 1;
+            }
+            else
+            {
+                endBuildingOn = startBuildingOn;
+            }
+            if (startBuildingOn < 0)
+            {
+                startBuildingOn = 0;
+            }
+            if (endBuildingOn < 0)
+            {
+                endBuildingOn = 0;
+            }
+            return Table.TableVerticalLine+new string(Table.WhiteSpace, startBuildingOn)+this.Title+new string(Table.WhiteSpace, endBuildingOn)+ Table.TableVerticalLine+Environment.NewLine;
         }
         private string BuildCell(int row, int col)
         {
             int whiteSpaces = this.longestStringCol[col] - this.TableCells[row, col].Content.Length;
-            return Table.TableVerticalLine + this.TableCells[row, col].WriteContent() + new string(Table.WhiteSpace, whiteSpaces) + Table.TableVerticalLine;
+            return Table.TableVerticalLine + this.TableCells[row, col].WriteContent() + new string(Table.WhiteSpace, whiteSpaces);
         }
         private string BuildRowLine(bool cornerLine)
         {

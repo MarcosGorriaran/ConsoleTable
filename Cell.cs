@@ -7,7 +7,7 @@ namespace ConsoleTable
     /// </summary>
     public class Cell
     {
-        const string ConsoleBold = "\x1b[1m";
+        const string ConsoleBold = "\x1b[1m\x1b[44m";
         const string ConsoleReset = "\x1b[0m";
         private string content;
         private bool header;
@@ -23,7 +23,7 @@ namespace ConsoleTable
         }
         /// <summary>
         /// Method which will return a string with escape codes telling the console to write
-        /// the text as bold but it will only work on windows 10 consoles and future versions of it
+        /// the text as bold but it will only work on windows 10 but changing background color will work consoles and future versions of it
         /// </summary>
         /// <returns>
         /// The content text either as bold text or normal text depending if weather or not the attribute header
